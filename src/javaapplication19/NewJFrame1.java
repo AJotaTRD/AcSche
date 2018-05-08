@@ -174,11 +174,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 102, 51));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Professor's Name");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Academic Scheduler: Professor, Course, and Room Administration Software");
 
         jButton9.setText("Sign Out");
@@ -218,7 +216,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        jTabbedPane2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTabbedPane2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jTabbedPane2.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         jLabel5.setText("Name:");
@@ -342,6 +340,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
         });
 
         jComboBox36.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "School"}));
+        jComboBox36.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox36ItemStateChanged(evt);
+            }
+        });
         jComboBox36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox36ActionPerformed(evt);
@@ -391,24 +394,29 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
         jComboBox19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "School"
             + "" }));
+jComboBox19.addItemListener(new java.awt.event.ItemListener() {
+    public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        jComboBox19ItemStateChanged(evt);
+    }
+    });
 
-jComboBox37.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Course Code" }));
-jComboBox37.setEnabled(false);
+    jComboBox37.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Course Code" }));
+    jComboBox37.setEnabled(false);
 
-javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-jPanel2.setLayout(jPanel2Layout);
-jPanel2Layout.setHorizontalGroup(
-    jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-    .addGroup(jPanel2Layout.createSequentialGroup()
-        .addContainerGap()
-        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jComboBox19, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox37, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)))
-        .addContainerGap())
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(jComboBox19, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jComboBox37, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
     );
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,9 +445,19 @@ jPanel2Layout.setHorizontalGroup(
     jScrollPane3.setViewportView(jTable3);
 
     jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Building" }));
+    jComboBox3.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            jComboBox3ItemStateChanged(evt);
+        }
+    });
 
     jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Room Number" }));
     jComboBox4.setEnabled(false);
+    jComboBox4.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            jComboBox4ItemStateChanged(evt);
+        }
+    });
 
     jComboBox34.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day" }));
     jComboBox34.setEnabled(false);
@@ -474,7 +492,6 @@ jPanel2Layout.setHorizontalGroup(
 
     jTabbedPane1.addTab("Rooms", jPanel3);
 
-    jLabel3.setForeground(new java.awt.Color(0, 0, 0));
     jLabel3.setText("Search By:");
 
     javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1187,6 +1204,22 @@ jPanel2Layout.setHorizontalGroup(
     private void jComboBox36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox36ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox36ActionPerformed
+
+    private void jComboBox36ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox36ItemStateChanged
+        jComboBox1.setEnabled(true);
+    }//GEN-LAST:event_jComboBox36ItemStateChanged
+
+    private void jComboBox19ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox19ItemStateChanged
+        jComboBox37.setEnabled(true);
+    }//GEN-LAST:event_jComboBox19ItemStateChanged
+
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+        jComboBox4.setEnabled(true);
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
+
+    private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
+        jComboBox34.setEnabled(true);
+    }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     /**
      * @param args the command line arguments
