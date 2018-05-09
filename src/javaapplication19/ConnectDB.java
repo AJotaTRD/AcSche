@@ -165,4 +165,8 @@ public class ConnectDB {
             System.out.println("Error: " + ex);
         }
     }
+
+    Statement getStateMent() {
+        return st;
+    }
 }

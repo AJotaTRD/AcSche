@@ -8,6 +8,7 @@ package javaapplication19;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -18,6 +19,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
     
     private professor activeprof;
     private ConnectDB connect;
+    private String id;
+    private Statement st;
+    private LogIn logn;
     /**
      * Creates new form NewJFrame1
      */
@@ -69,6 +73,8 @@ public class NewJFrame1 extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         PIidtxtb = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
+        PIlnametxtb = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -283,33 +289,47 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
         jButton8.setText("Update");
 
+        PIlnametxtb.setText("Professor Name");
+        PIlnametxtb.setEnabled(false);
+
+        jLabel35.setText("Last Name:");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel31)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel34))
+                            .addComponent(jLabel33))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PIidtxtb)
-                            .addComponent(PInametxtb)
                             .addComponent(PIphonetxtb)
                             .addComponent(PIemailtxtb, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(PIuserntxtb)
                             .addComponent(PIbirthtxtb)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jButton8)))
-                .addGap(372, 677, Short.MAX_VALUE))
+                        .addGap(176, 176, 176)
+                        .addComponent(jButton8))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                            .addComponent(jLabel35)
+                            .addGap(47, 47, 47)
+                            .addComponent(PIlnametxtb, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel34))
+                            .addGap(82, 82, 82)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(PIidtxtb)
+                                .addComponent(PInametxtb, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))))
+                .addContainerGap(819, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,6 +342,10 @@ public class NewJFrame1 extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(PInametxtb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(PIlnametxtb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -340,7 +364,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
                     .addComponent(PIbirthtxtb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addComponent(jButton8)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Personal Information", jPanel6);
@@ -1266,6 +1290,7 @@ jPanel2Layout.setHorizontalGroup(
     private javax.swing.JTextField PIbirthtxtb;
     private javax.swing.JTextField PIemailtxtb;
     private javax.swing.JTextField PIidtxtb;
+    private javax.swing.JTextField PIlnametxtb;
     private javax.swing.JTextField PInametxtb;
     private javax.swing.JTextField PIphonetxtb;
     private javax.swing.JTextField PIuserntxtb;
@@ -1359,6 +1384,7 @@ jPanel2Layout.setHorizontalGroup(
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
@@ -1401,4 +1427,29 @@ jPanel2Layout.setHorizontalGroup(
     private javax.swing.JTextField jTextField4;
     private javax.swing.JComboBox<String> profnamecmbbx;
     // End of variables declaration//GEN-END:variables
+
+    void setID(String id) {
+        this.id=id;
+    }
+
+    void setStmt(Statement st) {
+        this.st=st;
+    }
+
+    void refresh_info() throws SQLException{
+        ResultSet res = st.executeQuery("SELECT * FROM professor WHERE ID=\"" + id + "\"");
+        res.next();
+        PIidtxtb.setText(id);
+        genproflbl.setText(res.getString("first_name") + " " + res.getString("last_name"));
+        PInametxtb.setText(res.getString("first_name"));
+        PIlnametxtb.setText(res.getString("last_name"));
+        PIphonetxtb.setText(res.getString("phone_number"));
+        PIemailtxtb.setText(res.getString("email"));
+        PIuserntxtb.setText(res.getString("username"));
+        PIbirthtxtb.setText(res.getDate("birth").toString());
+    }
+
+    void getLogin(LogIn aThis) {
+        this.logn=aThis;
+    }
 }
