@@ -66,11 +66,11 @@ public class LogIn extends javax.swing.JFrame {
         setTitle("Account");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
             }
         });
 
@@ -78,7 +78,15 @@ public class LogIn extends javax.swing.JFrame {
 
         jLabel4.setText("Password:");
 
+        jTextField2.setText("test@test.test");
         jTextField2.setToolTipText("Email");
+
+        jPasswordField2.setText("test");
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Login");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +192,7 @@ public class LogIn extends javax.swing.JFrame {
 
         jLabel1.setText("ID:");
 
-        jTextField1.setText("P0000061");
+        jTextField1.setText("P00000061");
         jTextField1.setToolTipText("");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,6 +381,10 @@ public class LogIn extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     /**
      * @param args the command line arguments
