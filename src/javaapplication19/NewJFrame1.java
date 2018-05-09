@@ -5,19 +5,43 @@
  */
 package javaapplication19;
 //testing
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Alberto
  */
 public class NewJFrame1 extends javax.swing.JFrame {
-
+    private LogIn logn;
+    private String id;
+    private Statement st;
     /**
      * Creates new form NewJFrame1
      */
     public NewJFrame1() {
         initComponents();
     }
-
+    
+    public void getLogin(LogIn temp) {logn=temp;}
+    
+    public void refresh_info() throws SQLException{
+        ResultSet res = st.executeQuery("SELECT * FROM professor WHERE ID=\"" + id + "\"");
+        res.next();
+        jTextField10.setText(id);
+        jLabel1.setText(res.getString("first_name") + " " + res.getString("last_name"));
+        jTextField6.setText(res.getString("first_name"));
+        jTextField11.setText(res.getString("last_name"));
+        jTextField5.setText(res.getString("phone_number"));
+        jTextField7.setText(res.getString("email"));
+        jTextField8.setText(res.getString("username"));
+        jTextField9.setText(res.getDate("birth").toString());
+    }
+    public void setID(String id){this.id=id;}
+    public void setStmt(Statement st){this.st=st;}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +74,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -171,6 +198,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Academic Scheduler");
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(255, 102, 51));
 
@@ -180,6 +212,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
         jLabel2.setText("Academic Scheduler: Professor, Course, and Room Administration Software");
 
         jButton9.setText("Sign Out");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jComboBox38.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selected Semester" }));
 
@@ -218,21 +255,24 @@ public class NewJFrame1 extends javax.swing.JFrame {
 
         jTabbedPane2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jTabbedPane2.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
 
-        jLabel5.setText("Name:");
+        jLabel5.setText("First Name:");
 
         jLabel6.setText("Phone Number:");
 
         jLabel7.setText("Email:");
 
         jTextField5.setText("XXX-XXX-XXXX");
-        jTextField5.setEnabled(false);
+        jTextField5.setToolTipText("");
 
         jTextField6.setText("Professor Name");
-        jTextField6.setEnabled(false);
 
         jTextField7.setText("Email@domain.edu");
-        jTextField7.setEnabled(false);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -242,19 +282,31 @@ public class NewJFrame1 extends javax.swing.JFrame {
         jLabel31.setText("Username:");
 
         jTextField8.setText("Username");
-        jTextField8.setEnabled(false);
 
         jLabel33.setText("Birth Date:");
 
         jTextField9.setText("DD/MM/YYYY");
-        jTextField9.setEnabled(false);
 
         jLabel34.setText("ID:");
 
         jTextField10.setText("Professor ID");
-        jTextField10.setEnabled(false);
 
         jButton8.setText("Update");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Last Name:");
+
+        jTextField11.setText("Professor Last Name");
+        jTextField11.setToolTipText("");
+        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -263,6 +315,9 @@ public class NewJFrame1 extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jButton8))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -270,7 +325,8 @@ public class NewJFrame1 extends javax.swing.JFrame {
                             .addComponent(jLabel31)
                             .addComponent(jLabel33)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel34))
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField10)
@@ -278,10 +334,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
                             .addComponent(jTextField5)
                             .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(jTextField8)
-                            .addComponent(jTextField9)))
+                            .addComponent(jTextField9)
+                            .addComponent(jTextField11)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jButton8)))
+                        .addContainerGap()
+                        .addComponent(jLabel35)))
                 .addGap(372, 677, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -295,6 +352,10 @@ public class NewJFrame1 extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -311,9 +372,11 @@ public class NewJFrame1 extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel35)
+                .addGap(15, 15, 15)
                 .addComponent(jButton8)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Personal Information", jPanel6);
@@ -1221,6 +1284,56 @@ jComboBox19.addItemListener(new java.awt.event.ItemListener() {
         jComboBox34.setEnabled(true);
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+
+    }//GEN-LAST:event_jTabbedPane2StateChanged
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        String newid=jTextField10.getText();
+        String fn=jTextField6.getText();
+        String ln=jTextField11.getText();
+        String phone=jTextField5.getText();
+        String email=jTextField7.getText();
+        String username=jTextField8.getText();
+        String birth=jTextField9.getText();
+        try{
+            ResultSet res = st.executeQuery("SELECT * FROM professor WHERE ID=\""+newid+"\" AND first_name=\"" + fn + "\" AND last_name=\""+ ln + "\" AND username=\"" + username + "\" AND birth=\""+birth+"\" AND email=\""+email+"\" AND phone_number=\""+phone+"\";");
+            if(!res.isBeforeFirst()){
+                try {
+                    int updQuery = st.executeUpdate("UPDATE professor SET ID=\""+newid+"\", first_name=\"" + fn + "\", last_name=\""+ ln + "\", username=\"" + username + "\", birth=\""+birth+"\", email=\""+email+"\", phone_number=\""+phone+"\" WHERE ID=\""+ id + "\";");
+                    if (updQuery==1) {jLabel35.setText("Update Successful!"); st.executeUpdate("UPDATE account SET ID=\""+newid+"\", email=\""+email+"\" WHERE ID=\""+id+"\";"); id=newid;}
+                    else{jLabel35.setText("No updates done.");}
+                    } catch (SQLException ex) {
+                    jLabel35.setText("Error! One of the following problems has occurred:\n\t1) ID already exists.\n\t2) Date Format is wrong. Format( YYYY-MM-DD )");
+                    }
+                }
+            else{jLabel35.setText("No changes to be made.");}
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        id=null;
+        st=null;
+        
+        this.setVisible(false);
+        logn.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        id=null;
+        st=null;
+        
+        this.setVisible(false);
+        logn.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
@@ -1254,6 +1367,7 @@ jComboBox19.addItemListener(new java.awt.event.ItemListener() {
                 new NewJFrame1().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1349,6 +1463,8 @@ jComboBox19.addItemListener(new java.awt.event.ItemListener() {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
@@ -1387,6 +1503,7 @@ jComboBox19.addItemListener(new java.awt.event.ItemListener() {
     private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
